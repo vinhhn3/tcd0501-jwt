@@ -40,9 +40,7 @@ app.post("/register", async (req, res) => {
     const token = jwt.sign(
       { user_id: user._id, email },
       process.env.TOKEN_KEY,
-      {
-        expiresIn: "1h",
-      }
+      { expiresIn: "1h" }
     );
     user.token = token;
     res.status(200).send(user);
@@ -73,9 +71,7 @@ app.post("/login", async (req, res) => {
     const token = jwt.sign(
       { user_id: user._id, email },
       process.env.TOKEN_KEY,
-      {
-        expiresIn: "1h",
-      }
+      { expiresIn: "1h" }
     );
     user.token = token;
     res.status(200).send(user);
@@ -83,4 +79,11 @@ app.post("/login", async (req, res) => {
     console.log(error);
   }
 });
+
+const auth = require("./middleware/auth");
+
+app.get("/welcome", auth, (req, res) => {
+  res.status(200).send(`Welcome ${req.user.email}`);
+});
+
 module.exports = app;
