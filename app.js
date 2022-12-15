@@ -7,9 +7,14 @@ const User = require("./model/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const app = express();
-
+const cors = require("cors");
 app.use(express.json());
 
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 // Register
 
 app.post("/register", async (req, res) => {
