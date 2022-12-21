@@ -1,14 +1,11 @@
 require("dotenv").config();
 require("./config/database").connect();
-const database = require("./config/database");
 const express = require("express");
-
-// Import User context
-
 const routes = require("./routes");
-const app = express();
 const cors = require("cors");
 const ApiError = require("./utils/ApiError");
+
+const app = express();
 app.use(express.json());
 
 // Cors
