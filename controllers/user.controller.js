@@ -1,5 +1,7 @@
+const httpStatus = require("http-status");
+
 const welcome = async (req, res) => {
-  res.status(200).send(`Welcome ${req.user.email}`);
+  return res.status(httpStatus.OK).send(req.user);
 };
 module.exports = {
   welcome,
